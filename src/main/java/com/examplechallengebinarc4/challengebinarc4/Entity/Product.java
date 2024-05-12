@@ -27,7 +27,7 @@ public class Product extends AbstrackFood implements Serializable {
     private boolean completed;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "merchant_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Merchant merchant;
 
 }

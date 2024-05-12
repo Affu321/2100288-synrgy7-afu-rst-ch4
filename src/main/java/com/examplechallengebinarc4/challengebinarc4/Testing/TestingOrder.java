@@ -7,6 +7,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Map;
@@ -17,6 +21,8 @@ public class TestingOrder {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
     @Test
     public void addOrder(){
@@ -27,4 +33,23 @@ public class TestingOrder {
         int responseCode = (Integer) map.get("status");
         Assert.assertEquals(200, responseCode);
     }
-}
+    @Test
+    public void pagination(){
+        Map map = orderService.pagination(0,10);
+        System.out.println(map);
+        int responseCode = (Integer) map.get("status");
+        Assert.assertEquals(200, responseCode);
+    }
+
+//    @Test
+//    public void listSukses() {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.set("Accept", "*/*");
+//        headers.set("Content-Type", "application/json");
+//
+//        ResponseEntity<Object> exchange = restTemplate.exchange("http://dev.farizdotid.com/api/daerahindonesia/provinsi", HttpMethod.GET, null, Object.class);
+//        System.out.println("response  =" + exchange.getBody());
+
+        // get value
+//        assertEquals(HttpStatus.OK, exchange.getStatusCode());
+    }

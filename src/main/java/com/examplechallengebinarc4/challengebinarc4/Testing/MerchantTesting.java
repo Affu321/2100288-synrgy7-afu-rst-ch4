@@ -27,4 +27,3 @@ public class MerchantTesting {
             Assert.assertEquals(200, responseCode);
         }
 }
-//save.setMerchant_name("affu");

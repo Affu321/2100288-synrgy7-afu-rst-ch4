@@ -5,14 +5,15 @@ import com.examplechallengebinarc4.challengebinarc4.Entity.Merchant;
 import com.examplechallengebinarc4.challengebinarc4.Repository.MerchantRepository;
 import com.examplechallengebinarc4.challengebinarc4.Service.MerchantService;
 import com.examplechallengebinarc4.challengebinarc4.utils.Response;
-import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
-import java.awt.print.Pageable;
+
 import java.util.*;
 
 @Service
@@ -83,7 +84,6 @@ public class MerchantServiceImpl implements MerchantService {
             return response.eror("An error occurred while deleting merchant", 500);
         }
     }
-
     @Override
     public Map getMerchantById(UUID id) {
         Optional<Merchant> getId = merchantRepository.findById(id);
@@ -92,6 +92,11 @@ public class MerchantServiceImpl implements MerchantService {
         }
         return response.sucsess(getId.get());
     }
-
+//    @Override
+//    public Map merchantPagination(int page, int size) {
+//        Pageable showMerchant = PageRequest.of(page, size, Sort.by("merchantname").descending());
+//        Page<Merchant> list = (Page<Merchant>) merchantRepository.getAllDataPage(showMerchant);
+//        return response.sucsess(list);
+//    }
 }
 

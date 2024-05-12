@@ -13,7 +13,6 @@ public interface MerchantService {
     public Map updateMerchant(UUID merchantId, Merchant merchant);
     public Map deleteMerchant(UUID merchantId);
     public Map getMerchantById(UUID id);
-
 //    public Map merchantPagination(int page, int size);
 }
 

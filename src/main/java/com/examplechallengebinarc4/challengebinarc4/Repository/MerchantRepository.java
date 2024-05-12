@@ -18,8 +18,8 @@ public interface MerchantRepository extends JpaRepository<Merchant, UUID>, JpaSp
     @Query(value = "SELECT m FROM Merchant m WHERE m.id = :id")
     public Merchant getByIdMerchant(@Param("id") UUID id);
 
-    @Query("FROM Merchant m")
-    public Page getAllDataPage(Pageable pageable);
+//    @Query("FROM Merchant m")
+//    public Page getAllDataPage(Pageable pageable);
 }
 
 
