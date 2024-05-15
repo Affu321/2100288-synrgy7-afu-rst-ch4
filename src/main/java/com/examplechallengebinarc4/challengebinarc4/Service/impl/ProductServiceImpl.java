@@ -1,8 +1,6 @@
 package com.examplechallengebinarc4.challengebinarc4.Service.impl;
 
-import com.examplechallengebinarc4.challengebinarc4.Entity.Order;
 import com.examplechallengebinarc4.challengebinarc4.Entity.Product;
-import com.examplechallengebinarc4.challengebinarc4.Repository.OrderRepository;
 import com.examplechallengebinarc4.challengebinarc4.Repository.ProductRepository;
 import com.examplechallengebinarc4.challengebinarc4.Service.ProductService;
 import com.examplechallengebinarc4.challengebinarc4.utils.Response;
@@ -17,7 +15,7 @@ import org.thymeleaf.util.StringUtils;
 
 import java.util.*;
 @Service
-public class productServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private Response response;

@@ -2,8 +2,6 @@ package com.examplechallengebinarc4.challengebinarc4.Controller;
 
 import com.examplechallengebinarc4.challengebinarc4.Entity.Product;
 import com.examplechallengebinarc4.challengebinarc4.Repository.ProductRepository;
-import com.examplechallengebinarc4.challengebinarc4.Repository.ProductRepository;
-import com.examplechallengebinarc4.challengebinarc4.Service.ProductService;
 import com.examplechallengebinarc4.challengebinarc4.Service.ProductService;
 import com.examplechallengebinarc4.challengebinarc4.utils.Response;
 import jakarta.persistence.criteria.Predicate;
@@ -24,42 +22,49 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/product")
-public class ProductController{
+public class ProductController {
 
-@Autowired
-private ProductService productService;
-@Autowired
-private ProductRepository productRepository;
+    @Autowired
+    private ProductService productService;
 
-@Autowired
-private Response response;
+    @Autowired
+    private ProductRepository productRepository;
 
-@GetMapping(value = {"/all-product", "/all-Product/"})
-public ResponseEntity<Map> getListProduct() {
-    return new ResponseEntity<Map>(response.sucsess(productService.getAllProduct()), HttpStatus.OK);
-}
-@PostMapping(value = {"/save", "/save/"})
-public ResponseEntity<Map> saveProduct(@RequestBody Product request) {
-    Map obj = productService.addProduct(request);
-    return new ResponseEntity<Map>(response.sucsess(obj), HttpStatus.OK);
-}
-@PutMapping(value = {"/update/{productId}", "/update/{productId}/"})
-public ResponseEntity<Map> updateProduct(@RequestBody Product request, @PathVariable("productId") UUID ProductId) {
-    Map obj = productService.updateProduct(ProductId, request);
-    return new ResponseEntity<Map>(response.sucsess(obj), HttpStatus.OK);
-}
-@DeleteMapping(value = {"/delete/{productId}", "/delete/{productId}/"})
-public ResponseEntity<Map> deleteProduct(@PathVariable("productId") UUID ProductId) {
-    return new ResponseEntity<Map>(productService.deleteProduct(ProductId), HttpStatus.OK);
-}
-@GetMapping(value = {"/get/{productId}", "/get/{productId}/"})
-public ResponseEntity<Map> getById(@PathVariable("productId") UUID ProductId) {
-    return new ResponseEntity<Map>(productService.getProductById(ProductId), HttpStatus.OK);
-}
-@PostMapping(value = {"/response-object-emp", "/response-object-emp/"})
-public Product exString(@RequestBody Product req) {
-    return req;
-}
+    @Autowired
+    private Response response;
+
+    @GetMapping(value = {"/all-product", "/all-Product/"})
+    public ResponseEntity<Map> getListProduct() {
+        return new ResponseEntity<Map>(response.sucsess(productService.getAllProduct()), HttpStatus.OK);
+    }
+
+    @PostMapping(value = {"/save", "/save/"})
+    public ResponseEntity<Map> saveProduct(@RequestBody Product request) {
+        Map obj = productService.addProduct(request);
+        return new ResponseEntity<Map>(response.sucsess(obj), HttpStatus.OK);
+    }
+
+    @PutMapping(value = {"/update/{productId}", "/update/{productId}/"})
+    public ResponseEntity<Map> updateProduct(@RequestBody Product request, @PathVariable("productId") UUID ProductId) {
+        Map obj = productService.updateProduct(ProductId, request);
+        return new ResponseEntity<Map>(response.sucsess(obj), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = {"/delete/{productId}", "/delete/{productId}/"})
+    public ResponseEntity<Map> deleteProduct(@PathVariable("productId") UUID ProductId) {
+        return new ResponseEntity<Map>(productService.deleteProduct(ProductId), HttpStatus.OK);
+    }
+
+    @GetMapping(value = {"/get/{productId}", "/get/{productId}/"})
+    public ResponseEntity<Map> getById(@PathVariable("productId") UUID ProductId) {
+        return new ResponseEntity<Map>(productService.getProductById(ProductId), HttpStatus.OK);
+    }
+
+    @PostMapping(value = {"/response-object-emp", "/response-object-emp/"})
+    public Product exString(@RequestBody Product req) {
+        return req;
+    }
+
     @GetMapping(value = { "/list-Product", "/list-Product/" })
     public ResponseEntity<Map> list(@RequestParam(required = false, name = "product_name") String product_name,
                                     @RequestParam(required = false, name = "price") BigDecimal price,
@@ -75,7 +80,7 @@ public Product exString(@RequestBody Product req) {
             }
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         });
-    Page<Product> clientCompanyList = productRepository.findAll(spec, pageable);
-    return new ResponseEntity<Map>(response.sucsess(clientCompanyList), HttpStatus.OK);
-}
+        Page<Product> clientCompanyList = productRepository.findAll(spec, pageable);
+        return new ResponseEntity<Map>(response.sucsess(clientCompanyList), HttpStatus.OK);
+    }
 }

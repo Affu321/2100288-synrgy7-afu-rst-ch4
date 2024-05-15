@@ -17,7 +17,7 @@ public interface ProductRepository extends JpaRepository<Product, UUID>, JpaSpec
     @Query(value = "select p from Product p")
     public List<Product> getAllPage();
 
-    @Query(value = "SELECT p FROM Product p WHERE m.id = :id")
+    @Query("SELECT p FROM Product p WHERE p.id = :id")
     public Product getByIdProduct(@Param("id") UUID id);
 
     @Query("FROM Product p")
